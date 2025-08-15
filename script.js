@@ -35,33 +35,36 @@ function compareChoices(humanChoice, computerChoice){
 
 let humanScore = 0;
 let computerScore = 0;
+const playerScoreElement = document.querySelector("#player-score");
+const computerScoreElement = document.querySelector("#computer-score");
+const currentWinnerElement = document.querySelector("#declare-current-winner");
+
+playerScoreElement.addEventListener("score", function(e){
+    humanScore++;
+    playerScoreElement.textContent = `Player Score:${humanScore}`;
+});
+
+computerScoreElement.addEventListener("score", function(e){
+    computerScore++;
+    computerScoreElement.textContent = `Computer Score:${computerScore}`;
+});
 
 function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()){
     const result = compareChoices(humanChoice, computerChoice);
     if(result == "Win"){
-        console.log(`You Win! ${humanChoice} Beats ${computerChoice}`);
-        humanScore++;
+        currentWinnerElement.textContent = `You Win! ${humanChoice} Beats ${computerChoice}`;
+        playerScoreElement.dispatchEvent(new CustomEvent("score"));
     }else if(result == "Loose"){
-        console.log(`You Loose! ${computerChoice} Beats ${humanChoice}`);
-        computerScore++
+        currentWinnerElement.textContent = `You Loose! ${computerChoice} Beats ${humanChoice}`;
+        computerScoreElement.dispatchEvent( new CustomEvent("score"));
     }else {
-        console.log("Tie");
+        currentWinnerElement.textContent = "Tie";
     }
 }
 
-// function playGame(){
-//     for(let i = 0 ; i < 5 ; i++){
-//         playRound();
-//     }
-//     if(humanScore == computerScore) {
-//         console.log("Game Over - Tie..")
-//     }
-//     if(humanScore > computerScore){
-//         console.log("You Won The Game!");
-//     }
-//     else {
-//         console.log("You Lost the Game!");
-//     }
-// }
+const btns = document.querySelector(".buttons");
+btns.addEventListener("click", function(e){
+    playRound(humanChoice = e.target.textContent.toLowerCase());
+});
 
-// playGame()
+

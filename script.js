@@ -49,19 +49,19 @@ function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerC
     }
 }
 
-function playGame(){
-    for(let i = 0 ; i < 5 ; i++){
-        playRound();
-    }
-    if(humanScore == computerScore) {
-        console.log("Game Over - Tie..")
-    }
-    if(humanScore > computerScore){
-        console.log("You Won The Game!");
-    }
-    else {
-        console.log("You Lost the Game!");
-    }
-}
+// function playGame(){
+//     for(let i = 0 ; i < 5 ; i++){
+//         playRound();
+//     }
+//     if(humanScore == computerScore) {
+//         console.log("Game Over - Tie..")
+//     }
+//     if(humanScore > computerScore){
+//         console.log("You Won The Game!");
+//     }
+//     else {
+//         console.log("You Lost the Game!");
+//     }
+// }
 
-playGame()
+// playGame()
